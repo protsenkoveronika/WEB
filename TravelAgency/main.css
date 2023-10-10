@@ -1,9 +1,5 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    width: auto;
     background-image: url('https://images.pexels.com/photos/19670/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
     background-size: cover;
     animation: animatedBackground 10s;
@@ -16,7 +12,7 @@ body {
     }
     to {
         background-size: cover;
-        background-position: 0% 22%;
+        background-position: 0 22%;
     }
 }
 
@@ -71,29 +67,18 @@ p {
 
 
 
-
-.content {
-    display: grid;
-    justify-content: space-between;
-}
-
-.row {
-    justify-content: center;
+.mainrow {
     border-top-color: rgba(42,42,42,0.53);
     border-top-style: dotted;
     padding: 10px;
-    background-color: rgba(255, 255, 255, 0.47);
+    background-color: rgba(255, 255, 255, 0.38);
 }
 
-.row p {
+.mainrow p {
     padding: 10px;
 }
 
-
-
-
 .offers_container {
-    justify-content: space-between;
     padding: 20px;
 }
 
@@ -112,14 +97,14 @@ h3, h2 {
 .image {
     width: 30%;
     margin-bottom: 20px;
-    box-shadow: 7px 0 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 7px 0 5px rgba(0, 0, 0, 0.43);
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.51);
 }
 
 .image img {
     width: 100%;
-    height: 230px;
+    height: 200px;
     border-radius: 10px;
     transition: transform 0.3s;
 }
@@ -133,66 +118,53 @@ h3, h2 {
 }
 
 h5 {
+    display: flex;
+    flex-wrap: wrap;
+    font-weight: bold;
+    margin: 0;
     background-color: rgba(255, 255, 255, 0.51);
+    justify-content: center;
 }
-
 
 
 
 footer {
-    width: 102%;
+    display: flex;
+    padding-top: 10px;
     background-color: rgba(51, 51, 51, 0.96);
     color: white;
-    padding: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 h6 {
+    font-weight: bold;
     margin: 0;
 }
 
-.footer-column {
-    display: grid;
-    margin-right: 20px;
+.row {
+    width: 95%;
+    justify-content: center;
+    padding: 10px 10px 0 10px ;
+}
+
+.row p {
     padding: 10px;
 }
 
-.footer-column:last-child {
-    margin-right: 0;
-}
 
-.footer-column h6 {
-    font-weight: bold;
-}
-
-ul {
-    margin: 10px;
-    padding: 0 0 0 20px;
-}
-
-.footer-column ul {
-    list-style-type: none;
-    margin-left: 15px;
-}
-
-.footer-column li {
-    margin-bottom: 10px;
-}
-
-.footer-column a {
-    color: white;
+.col-sm a{
+    color: #ffffff;
     text-decoration: none;
 }
 
-.footer-column a i {
-    margin-right: 5px;
+.col-sm a:hover i {
     transition: transform 0.3s;
+    transform: scale(1.2);
 }
 
-.footer-column a:hover i {
-    transform: scale(1.2);
+.col-sm ul {
+    color: #ffffff;
+    list-style: none;
 }
 
 
@@ -238,7 +210,9 @@ ul {
     a, li {
         font-size: 13px;
     }
+
+    .col-sm {
+        width: 90%;
+        padding-bottom: 10px;
+    }
 }
-
-
-
