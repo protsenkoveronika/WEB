@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="main.css">
+    <title>JS</title>
+</head>
+<body>
+    <label for="length">Довжина:</label>
+    <input type="text" id="length" oninput="calculateRectangle()">
+    <br>
+    <label for="width">Ширина:</label>
+    <input type="text" id="width" oninput="calculateRectangle()">
+    <br>
+    <p></p>
+    <p>Периметр: <span id="perimeter">0</span></p>
+    <p>Площа: <span id="area">0</span></p>
+    <p>Довжина діагоналі: <span id="diagonal">0</span></p>
+
+    <div class="row mt-3">
+        <p></p>
+    </div>
+
+    <div class="container1">
+            <div class="col col-lg-2">
+                <div class="card-header">Користувач 1</div>
+                <div class="card-footer">
+                    <input type="text" id="user1MessageInput" class="form-control" placeholder="Напишіть повідомлення">
+                    <button onclick="sendMessage('user1')" class="btn btn-primary mt-2">Надіслати</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4" style="justify-content: left">
+                    <div class="card-body" id="user1Messages">
+                    </div>
+                </div>
+                <div class="col-4" style="justify-content: right">
+                    <div class="card-body r" id="user2Messages">
+                    </div>
+                </div>
+            </div>
+            <div class="col col-lg-2">
+                <div class="card-header">Користувач 2</div>
+                <div class="card-footer">
+                    <input type="text" id="user2MessageInput" class="form-control" placeholder="Напишіть повідомлення">
+                    <button onclick="sendMessage('user2')" class="btn btn-primary mt-2">Надіслати</button>
+                </div>
+            </div>
+    </div>
+
+    <div class="row mt-3">
+        <p></p>
+    </div>
+
+    <div class="container">
+        <div class="form-group">
+            <label for="ukrainianText">Український текст:</label>
+            <input type="text" class="form-control" id="ukrainianText">
+        </div>
+        <div class="form-group">
+            <label for="transliteratedText">Транслітерований текст:</label>
+            <input type="text" class="form-control" id="transliteratedText" readonly>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <p></p>
+    </div>
+
+    <div class="container">
+        <form id="dateForm">
+            <div class="form-group">
+                <label for="date">Введіть дату:</label>
+                <input class="form-control" type="date" id="date">
+            </div>
+            <button type="button" class="btn btn-primary mt-2" onclick="calculateDay()">Обчислити</button>
+        </form>
+        <p></p>
+        <p id="result"></p>
+    </div>
+
+    <script>
+    function calculateRectangle() {
+        const length = parseFloat(document.getElementById('length').value);
+        const width = parseFloat(document.getElementById('width').value);
+
+        if (!isNaN(length) && !isNaN(width) && length>0 && width>0) {
+            const perimeter = 2 * (length + width);
+            const area = length * width;
+            const diagonal = Math.sqrt(length ** 2 + width ** 2);
+
+            document.getElementById('perimeter').textContent = perimeter.toFixed(2);
+            document.getElementById('area').textContent = area.toFixed(2);
+            document.getElementById('diagonal').textContent = diagonal.toFixed(2);
+        } else {
+            document.getElementById('perimeter').textContent = '0';
+            document.getElementById('area').textContent = '0';
+            document.getElementById('diagonal').textContent = '0';
+        }
+    }
+
+    function sendMessage(user) {
+        const messageInput = document.getElementById(user + 'MessageInput');
+        const messageText = messageInput.value.trim();
+
+        if (messageText !== "") {
+            const messageBlock = document.createElement("p");
+            messageBlock.textContent = messageText;
+
+            if (user === 'user1') {
+                document.getElementById('user1Messages').appendChild(messageBlock);
+                document.getElementById('user2Messages').appendChild(document.createElement("br"));
+            } else {
+                document.getElementById('user2Messages').appendChild(messageBlock);
+                document.getElementById('user1Messages').appendChild(document.createElement("br"));
+            }
+
+            messageInput.value = "";
+        }
+    }
+
+
+    function transliterateUkrainian() {
+        const ukrainianText = document.getElementById("ukrainianText").value;
+        const transliteratedText = transliterate(ukrainianText);
+        document.getElementById("transliteratedText").value = transliteratedText;
+    }
+
+    function transliterate(text) {
+        const ukrToLatinMap = {
+            'а': 'a', 'б': 'b', 'в': 'v', 'г': 'h', 'д': 'd', 'е': 'e', 'є': 'ye', 'ж': 'zh',
+            'з': 'z', 'и': 'y', 'і': 'i', 'ї': 'yi', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm',
+            'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u', 'ф': 'f',
+            'х': 'kh', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'shch', 'ь': '', 'ю': 'yu', 'я': 'ya'
+        };
+
+        return text
+            .split('')
+            .map(char => ukrToLatinMap[char] || char)
+            .join('');
+    }
+    document.getElementById("ukrainianText").addEventListener("input", transliterateUkrainian);
+
+    function calculateDay() {
+        const inputDate = new Date(document.getElementById("date").value);
+        const year = inputDate.getFullYear();
+        const month = inputDate.getMonth() + 1;
+        const day = inputDate.getDate();
+        const currentDate = new Date();
+
+        if (inputDate > currentDate) {
+            document.getElementById("result").textContent = "Некоректна дата";
+            return;
+        }
+
+        const a = Math.floor((14 - month) / 12);
+        const y = year - a;
+        const m = month + 12 * a - 2;
+
+        const dayOfWeek = (day + y + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400) + Math.floor(31 * m / 12)) % 7;
+
+        const daysOfWeek = ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"];
+        const result = daysOfWeek[dayOfWeek];
+
+        document.getElementById("result").textContent = "Ваш день народження був у " + result;
+    }
+
+</script>
+</body>
+</html>

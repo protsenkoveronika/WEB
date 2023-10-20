@@ -1,0 +1,38 @@
+body {
+    margin: 20px;
+}
+
+.container1 {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    background-color: aliceblue;
+}
+
+.col-4 {
+    width: 100%;
+}
+
+.card-body.r p{
+    justify-content: flex-end;
+}
+
+.row p{
+    display: flex;
+    width: 100%;
+    margin: 2px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.col-lg-2 {
+    flex: auto;
+    max-width: none;
+    width: 30%;
+}
+
