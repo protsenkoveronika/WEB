@@ -6,7 +6,7 @@ body {
 }
 
 .content {
-    min-height: 1000px;
+    min-height: 500px;
 }
 
 @keyframes animatedBackground {
@@ -71,74 +71,45 @@ p {
 
 
 
-.mainrow {
-    border-top-color: rgba(42,42,42,0.53);
-    border-top-style: dotted;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.38);
-}
 
-.mainrow p {
-    padding: 10px;
-}
-
-.offers_container {
-    padding: 20px;
-}
-
-h3, h2 {
-    text-align: center;
-    margin: 0;
-}
-
-.ouroffers {
-    font-size: 1.25rem;
-    color: #212529;
-    text-decoration: none;
-}
-
-h3 a:hover {
-    color: black;
-}
-
-.offers {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 10px;
-}
-
-.image {
-    width: 30%;
-    margin-bottom: 20px;
-    box-shadow: 7px 0 5px rgba(0, 0, 0, 0.43);
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.51);
-}
-
-.image img {
+.row.main{
     width: 100%;
-    height: 200px;
-    border-radius: 10px;
-    transition: transform 0.3s;
 }
 
-.image p {
+h2 {
     text-align: center;
-}
-
-.image:hover img {
-    transform: scale(1.05);
-}
-
-h5 {
-    display: flex;
-    flex-wrap: wrap;
-    font-weight: bold;
     margin: 0;
-    background-color: rgba(255, 255, 255, 0.51);
-    justify-content: center;
+    margin-bottom: 10px;
 }
+
+h4 {
+    margin: 5px 0 0 0;
+    padding-left: 5px;
+    background-color: rgba(255, 233, 143, 0.53);
+}
+
+.col-md-6.offset-md-3 {
+    margin-left: 13%;
+}
+
+.mt-5, .my-5 {
+    margin-bottom: 3rem!important;
+}
+
+.main_contacts li {
+    margin: 10px 0;
+}
+
+.main_contacts a {
+    margin-left: 30%!important;
+    color: #212529!important;
+}
+
+.main_contacts i {
+    margin-right: 8px;
+}
+
+
 
 
 
@@ -158,7 +129,7 @@ h6 {
 .row {
     width: 95%;
     justify-content: center;
-    padding: 10px 10px 0 10px ;
+    padding: 0;
 }
 
 .row p {
@@ -208,19 +179,6 @@ h6 {
         margin-right: 10px;
     }
 
-    .offers_container {
-        padding: 10px;
-    }
-
-    .image {
-        width: 100%;
-        margin: 10px 20px 10px 20px;
-    }
-
-    .image img {
-        height: auto;
-    }
-
     a, li {
         font-size: 13px;
     }
@@ -232,5 +190,17 @@ h6 {
     .col-sm {
         width: 90%;
         padding-bottom: 10px;
+    }
+
+    .col-md-6.offset-md-3 {
+        margin-left: 45px;
+    }
+
+    .col-lg-6 {
+        margin-left: 13%;
+    }
+
+    .main_contacts a {
+        margin-left: 10%!important;
     }
 }

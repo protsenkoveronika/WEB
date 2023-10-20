@@ -5,21 +5,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="pages.css">
     <title>Sign up</title>
 </head>
 <body>
 <header>
-    <img src="img/logo.png" height="60" width="80" alt="logo">
+    <h1><img src="img/logo.png" alt="logo">EasyTravel</h1>
     <nav>
         <ul>
             <li><a href="main.html">Home</a></li>
-            <li><a href="#">Успішність</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contacts.html">Contacts</a></li>
             <li><a href="login.html">Log in</a></li>
             <li><a href="signup.html">Sign up</a></li>
         </ul>
     </nav>
 </header>
+<div class="content">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2>Sign Up</h2>
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Enter your password">
+                    </div>
+                    <div class="form-group">
+                        <label for="firstname">First Name</label>
+                        <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Enter your first name">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Last Name</label>
+                        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Enter your last name">
+                    </div>
+                    <div class="form-group">
+                        <label for="middlename">Middle Name</label>
+                        <input type="text" class="form-control" name="middlename" id="middlename" placeholder="Enter your middle name">
+                    </div>
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="gender" value="male" id="male">
+                            <label class="form-check-label" for="male">Male</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="gender" value="female" id="female">
+                            <label class="form-check-label" for="female">Female</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="text" class="form-control" name="phone" id="phone" placeholder="+38(0__) -___-__-__">
+                    </div>
+                    <div class="form-group">
+                        <label for="birthdate">Date of Birth</label>
+                        <input type="date" class="form-control" name="birthdate" id="birthdate">
+                    </div>
+                    <div class="form-group">
+                        <label for="group">Group</label>
+                        <select class="form-control" name="group" id="group">
+                            <option>Group 1</option>
+                            <option>Group 2</option>
+                            <option>Group 3</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="file">Upload File</label>
+                        <input type="file" class="form-control-file" name="file" id="file">
+                    </div>
+                    <input type="button" class="btn btn-primary" value="Submit">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <table class="table mt-5" id="table">
+        <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Email</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Middle Name</th>
+            <th scope="col">Date of Birth</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Group</th>
+        </tr>
+        </thead>
+        <tbody id="data-table-body"></tbody>
+    </table>
+</div>
+<footer>
+    <div class="row">
+        <div class="col-sm">
+            <h6>About Us</h6>
+            <ul>
+                <li>About EasyTravel</li>
+                <li>Our Team</li>
+                <li>Mission and Values</li>
+                <li>Testimonials</li>
+            </ul>
+        </div>
+        <div class="col-sm">
+            <h6>Social Media</h6>
+            <ul>
+                <li>Facebook</li>
+                <li>Twitter</li>
+                <li>Instagram</li>
+                <li>LinkedIn</li>
+            </ul>
+        </div>
+        <div class="col-sm">
+            <h6><a href="contacts.html">Contacts</a></h6>
+            <ul>
+                <li><a href="tel:+380968858666"><i class="fas fa-phone"></i> +380968858666</a></li>
+                <li><a href="mailto:easytravel@gmail.com"><i class="fas fa-envelope"></i> easytravel@gmail.com</a></li>
+                <li><a href="https://t.me/"><i class="fab fa-telegram"></i> Telegram</a></li>
+                <li><a href="https://wa.me/"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.6/jquery.inputmask.min.js"></script>
+
+<script>
+    var table
+</script>
+
+<script src="signup.js"></script>
 </body>
 </html>
