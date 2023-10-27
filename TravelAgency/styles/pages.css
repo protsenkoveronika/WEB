@@ -109,9 +109,22 @@ h4 {
     margin-right: 8px;
 }
 
+.error-message {
+    color: red;
+}
 
+tbody th {
+    font-size: 0.75rem;
+}
 
+tbody .btn {
+    font-size: 0.75rem;
+    line-height: 1;
+}
 
+.table-responsive {
+    margin-bottom: 10px;
+}
 
 footer {
     display: flex;

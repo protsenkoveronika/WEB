@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="pages.css">
+    <link rel="stylesheet" href="styles/pages.css">
     <title>Sign up</title>
 </head>
 <body>
@@ -30,18 +30,22 @@
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email">
+                        <span id="emailError" class="error-message"></span>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" name="password" id="password" placeholder="Enter your password">
+                        <span id="passwordError" class="error-message"></span>
                     </div>
                     <div class="form-group">
                         <label for="firstname">First Name</label>
                         <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Enter your first name">
+                        <span id="firstnameError" class="error-message"></span>
                     </div>
                     <div class="form-group">
                         <label for="lastname">Last Name</label>
                         <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Enter your last name">
+                        <span id="lastnameError" class="error-message"></span>
                     </div>
                     <div class="form-group">
                         <label for="middlename">Middle Name</label>
@@ -57,14 +61,17 @@
                             <input type="radio" class="form-check-input" name="gender" value="female" id="female">
                             <label class="form-check-label" for="female">Female</label>
                         </div>
+                        <span id="genderError" class="error-message"></span>
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number</label>
-                        <input type="text" class="form-control" name="phone" id="phone" placeholder="+38(0__) -___-__-__">
+                        <input type="text" class="form-control" name="phone" id="phone" placeholder="+38(0__)-___-__-__">
+                        <span id="phoneError" class="error-message"></span>
                     </div>
                     <div class="form-group">
                         <label for="birthdate">Date of Birth</label>
                         <input type="date" class="form-control" name="birthdate" id="birthdate">
+                        <span id="birthdateError" class="error-message"></span>
                     </div>
                     <div class="form-group">
                         <label for="group">Group</label>
@@ -76,31 +83,33 @@
                     </div>
                     <div class="form-group">
                         <label for="file">Upload File</label>
-                        <input type="file" class="form-control-file" name="file" id="file">
+                        <input type="file" class="form-control-file" name="file" id="file" multiple>
                     </div>
-                    <input type="button" class="btn btn-primary" value="Submit">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
         </div>
     </div>
-    <table class="table mt-5" id="table">
-        <thead>
-        <tr>
-            <th scope="col"></th>
-            <th scope="col">Email</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Middle Name</th>
-            <th scope="col">Date of Birth</th>
-            <th scope="col">Gender</th>
-            <th scope="col">Phone Number</th>
-            <th scope="col">Group</th>
-        </tr>
-        </thead>
-        <tbody id="data-table-body"></tbody>
-    </table>
-</div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col" style="min-width: 150px;">Email</th>
+                <th scope="col" style="min-width: 100px;">First Name</th>
+                <th scope="col" style="min-width: 100px;">Last Name</th>
+                <th scope="col" style="min-width: 90px;">Middle Name</th>
+                <th scope="col" style="min-width: 115px;">Date of Birth</th>
+                <th scope="col" style="min-width: 50px;">Gender</th>
+                <th scope="col" style="min-width: 170px;">Phone Number</th>
+                <th scope="col" style="min-width: 90px;">Group</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody id="data-table-body"></tbody>
+        </table>
+        <button class="btn btn-danger" onclick="deleteSelectedRows()">Delete</button>
+        <button class="btn btn-info" onclick="duplicateSelectedRows()">Duplicate</button>
+    </div>
 <footer>
     <div class="row">
         <div class="col-sm">
@@ -136,10 +145,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.6/jquery.inputmask.min.js"></script>
 
-<script>
-    var table
-</script>
-
-<script src="signup.js"></script>
+<script src="scripts/signup.js"></script>
 </body>
 </html>
