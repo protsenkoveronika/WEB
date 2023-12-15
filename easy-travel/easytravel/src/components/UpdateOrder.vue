@@ -7,12 +7,16 @@
       <form @submit.prevent="updateOrder">
         <div class="form-group">
           <label for="offerId">Offer ID</label>
-          <input v-model="formData.offerId" type="number" class="form-control" name="offerId" placeholder="Enter ID of an offer" min="1" @input="clearValidationError('offerId')">
+          <select v-model="formData.offerId" class="form-control" name="offerId" id="offerId" @input="clearValidationError('offerId')">
+            <option v-for="offer in existingOffers" :key="offer.id">{{ offer.id }}</option>
+          </select>
           <span class="error-message">{{ validationErrors.offerId }}</span>
         </div>
         <div class="form-group">
           <label for="userId">User ID</label>
-          <input v-model="formData.userId" type="number" class="form-control" name="userId" placeholder="Enter ID of a user" min="1" @input="clearValidationError('userId')">
+          <select v-model="formData.userId" class="form-control" name="userId" id="userId" @input="clearValidationError('userId')">
+            <option v-for="user in existingUsers" :key="user.id">{{ user.id }}</option>
+          </select>
           <span class="error-message">{{ validationErrors.userId }}</span>
         </div>
         <div class="form-group">
@@ -60,6 +64,8 @@ export default {
         startdate: "",
         stopdate: "",
       },
+      existingOffers: [],
+      existingUsers: [],
     };
   },
 
@@ -177,10 +183,29 @@ export default {
           console.error("Error fetching order data:", error);
         });
   },
+
   computed: {
     getCurrentDate() {
       return new Date().toISOString().split("T")[0];
     },
+  },
+
+  created() {
+    OffersService.getAll()
+        .then(response => {
+          this.existingOffers = response.data;
+        })
+        .catch(error => {
+          console.error("Error fetching offers:", error);
+        });
+
+    UsersService.getAll()
+        .then(response => {
+          this.existingUsers = response.data;
+        })
+        .catch(error => {
+          console.error("Error fetching Users:", error);
+        });
   },
 }
 </script>

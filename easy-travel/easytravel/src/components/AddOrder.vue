@@ -8,12 +8,16 @@
         <form @submit.prevent="submitForm">
           <div class="form-group">
             <label for="offerId">Offer ID</label>
-            <input v-model="formData.offerId" type="number" class="form-control" name="offerId" placeholder="Enter ID of an offer" min="1" @input="clearValidationError('offerId')">
+            <select v-model="formData.offerId" class="form-control" name="offerId" id="offerId" placeholder="Choose ID of an offer" min="1" @input="clearValidationError('offerId')">
+              <option v-for="offer in existingOffers" :key="offer.id">{{ offer.id }}</option>
+            </select>
             <span class="error-message">{{ validationErrors.offerId }}</span>
           </div>
           <div class="form-group">
             <label for="userId">User ID</label>
-            <input v-model="formData.userId" type="number" class="form-control" name="userId" placeholder="Enter ID of a user" min="1" @input="clearValidationError('userId')">
+            <select v-model="formData.userId" class="form-control" name="userId" id="userId" placeholder="Choose ID of a user" min="1" @input="clearValidationError('userId')">
+              <option v-for="user in existingUsers" :key="user.id">{{ user.id }}</option>
+            </select>
             <span class="error-message">{{ validationErrors.userId }}</span>
           </div>
           <div class="form-group">
@@ -61,6 +65,8 @@ export default {
         startdate: "",
         stopdate: "",
       },
+      existingOffers: [],
+      existingUsers: [],
     };
   },
 
@@ -79,30 +85,15 @@ export default {
       }
 
       try {
-        const userResponse = await UsersService.get(this.formData.userId);
-
-        if (!userResponse.data) {
-          this.validationErrors.userId = "User with this ID does not exist";
-          return;
-        }
-
-        const offerResponse = await OffersService.get(this.formData.offerId);
-
-        if (!offerResponse.data) {
-          this.validationErrors.offerId = "Offer with this ID does not exist";
-          return;
-        }
-
-        const orderResponse = await OrdersService.create(this.formData);
-
+        const response = await OrdersService.create(this.formData);
         this.resetForm();
-        console.log("Order created successfully:", orderResponse.data);
+        console.log("Order created successfully:", response.data);
       } catch (error) {
         console.error("Error creating order:", error);
       }
     },
 
-    async validateForm(offerId, userId, orderdate, startdate, stopdate) {
+    validateForm(offerId, userId, orderdate, startdate, stopdate) {
       let isValid = true;
       this.validationErrors = {
         offerId: "",
@@ -137,28 +128,14 @@ export default {
         isValid = false;
       }
 
-      if (!userId) {
+      if (!userId.trim()) {
         this.validationErrors.userId = "User ID is required";
         isValid = false;
-      } else {
-        const userResponse = await UsersService.get(userId);
-
-        if (!userResponse.data) {
-          this.validationErrors.userId = "User with this ID does not exist";
-          isValid = false;
-        }
       }
 
-      if (!offerId) {
+      if (!offerId.trim()) {
         this.validationErrors.offerId = "Offer ID is required";
         isValid = false;
-      } else {
-        const offerResponse = await OffersService.get(offerId);
-
-        if (!offerResponse.data) {
-          this.validationErrors.offerId = "Offer with this ID does not exist";
-          isValid = false;
-        }
       }
 
         return isValid;
@@ -190,6 +167,24 @@ export default {
     getCurrentDate() {
       return new Date().toISOString().split("T")[0];
     },
+  },
+
+  created() {
+    OffersService.getAll()
+        .then(response => {
+          this.existingOffers = response.data;
+        })
+        .catch(error => {
+          console.error("Error fetching offers:", error);
+        });
+
+    UsersService.getAll()
+        .then(response => {
+          this.existingUsers = response.data;
+        })
+        .catch(error => {
+          console.error("Error fetching Users:", error);
+        });
   },
 }
 </script>
